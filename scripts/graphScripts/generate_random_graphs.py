@@ -31,25 +31,15 @@ def main(argv):
 
     arr = read_indices()
 
-    global SWC
-    global SWCC
-    global SWNC
-    global PLC
-    global PLTC
-    global RGC
-    global ERRC
+    cg.SWC = arr[0]
+    cg.SWCC = arr[1]
+    cg.SWNC = arr[2]
+    cg.PLC = arr[3]
+    cg.PLTC = arr[4]
+    cg.RGC = arr[5]
+    cg.ERRC = arr[6]
 
-    print repr(arr)
-
-    SMC = arr[0]
-    SWCC = arr[1]
-    SWNC = arr[2]
-    PLC = arr[3]
-    PLTC = arr[4]
-    RGC = arr[5]
-    ERRC = arr[6]
-
-    #try: 
+    # try:
     for i in range(0, int(number_of_graphs)):
         new_graph = RandomGraph(type_of_graph, parameters)
         graph = new_graph.graph
@@ -60,14 +50,15 @@ def main(argv):
     #except:
         #print "An Error as occured, exiting before finishing..."
 
-    write_indices([SMC, 
-                SWCC, 
-                SWNC, 
-                PLC, 
-                PLTC, 
-                RGC, 
-                ERRC])
-    print SMC
+    write_indices([cg.SWC, 
+                cg.SWCC, 
+                cg.SWNC, 
+                cg.PLC, 
+                cg.PLTC, 
+                cg.RGC, 
+                cg.ERRC])
+
+
 
 if __name__ == "__main__":
    main(sys.argv[1:])
