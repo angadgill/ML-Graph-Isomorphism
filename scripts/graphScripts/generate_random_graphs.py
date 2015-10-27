@@ -5,7 +5,7 @@ sys.path.append('../')
 
 import dill as pickle
 
-from graph_class import *
+from random_graph_class import *
 
 # THE ARGUMENTS FOR RUNNING THIS FILE ARE AS FOLLOWS:
 

@@ -1,7 +1,6 @@
 __author__ = 'angad'
 
 import networkx as nx
-import random
 
 
 class GraphPair(object):

@@ -1,5 +1,6 @@
 __author__ = 'angad'
 
+import random
 
 def permute_graph(graph, permutations=1):
     # Perform pair-wise permutations on the graph to generate an isomorphic graph
