@@ -72,10 +72,10 @@ def save_graph(graph, name, path):
     f.close()
 
 def read_indices():
-    f = open('../../graphs/graph_indices.p', 'r')
+    f = open('../../graph_indices.p', 'r')
     return pickle.load(f)
 
 def write_indices(arr):
-    f = open('../../graphs/graph_indices.p', 'w')
+    f = open('../../graph_indices.p', 'w')
     pickle.dump(arr, f)
     f.close()

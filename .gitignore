@@ -58,3 +58,6 @@ target/
 
 #Pycharm
 .idea
+
+# Locally store graphs because we will need a ton of these
+graphs/*
