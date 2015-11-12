@@ -46,6 +46,8 @@ class CompareLSpectrum(CompareFeature):
         s.sort()
         return s
 
+# TODO: Add characteristic polynomial for adjacency matrix
+
 
 # class CompareASpectrum(CompareFeature):
 #     def _compute(self, graph):
