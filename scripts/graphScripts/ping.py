@@ -7,7 +7,7 @@ import networkx as nx
 # import random #Standard random library seems to get stuck in a pattern, numpy doesn't
 from numpy import random
 from math import factorial
-
+from scipy.spatial.distance import cosine
 
 def create(degree, nodes):
     # Returns a pair of PING
@@ -20,7 +20,8 @@ def create(degree, nodes):
 
     node_list = range(nodes)
 
-    for _ in xrange(factorial(nodes)):
+    # for _ in xrange(factorial(nodes)):
+    while(True):
         random.shuffle(node_list)
 
         # Generate first PING graph
@@ -34,7 +35,9 @@ def create(degree, nodes):
                 g1.add_edge(new_node, connect_to_node)
             for connect_to_node in node_list[nodes/2:]:
                 g2.add_edge(new_node, connect_to_node)
-        if not nx.is_isomorphic(g1, g2):
+        isomorphic = nx.is_isomorphic(g1, g2)
+        cospectral_dist = abs(cosine(nx.adjacency_spectrum(g1), nx.adjacency_spectrum(g2)))
+        if not isomorphic and cospectral_dist < 0.01:
             return g1, g2
 
     if nx.is_isomorphic(g1, g2):

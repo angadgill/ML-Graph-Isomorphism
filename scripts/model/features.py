@@ -1,7 +1,7 @@
 __author__ = 'angad'
 
 import networkx as nx
-
+from scipy.spatial.distance import cosine
 
 class CompareFeature(object):
     def __init__(self, graph1, graph2):
@@ -40,18 +40,20 @@ class CompareDirected(CompareFeature):
 
 
 class CompareLSpectrum(CompareFeature):
+    def __init__(self, graph1, graph2):
+        self._value = abs(cosine(self._compute(graph1), self._compute(graph2)))
+
     def _compute(self, graph):
         s = nx.laplacian_spectrum(graph)
-        s = s.tolist()
-        s.sort()
         return s
 
 # TODO: Add characteristic polynomial for adjacency matrix
 
 
-# class CompareASpectrum(CompareFeature):
-#     def _compute(self, graph):
-#         s = nx.adjacency_spectrum(graph)
-#         s = s.tolist()
-#         s.sort()
-#         return s
+class CompareASpectrum(CompareFeature):
+    def __init__(self, graph1, graph2):
+        self._value = abs(cosine(self._compute(graph1), self._compute(graph2)))
+
+    def _compute(self, graph):
+        s = nx.adjacency_spectrum(graph)
+        return s
