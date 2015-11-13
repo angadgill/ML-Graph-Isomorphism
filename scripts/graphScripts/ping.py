@@ -20,6 +20,7 @@ def create(degree, nodes):
 
     node_list = range(nodes)
 
+    # TODO: Find a better way to find a PING graph. Avoid using factorial or while(True)
     # for _ in xrange(factorial(nodes)):
     while(True):
         random.shuffle(node_list)

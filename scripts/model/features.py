@@ -45,10 +45,8 @@ class CompareLSpectrum(CompareFeature):
 
     def _compute(self, graph):
         s = nx.laplacian_spectrum(graph)
+
         return s
-
-# TODO: Add characteristic polynomial for adjacency matrix
-
 
 class CompareASpectrum(CompareFeature):
     def __init__(self, graph1, graph2):
@@ -57,3 +55,6 @@ class CompareASpectrum(CompareFeature):
     def _compute(self, graph):
         s = nx.adjacency_spectrum(graph)
         return s
+
+# TODO: Add family of spectra
+# TODO: Add characteristic polynomial for adjacency matrix
