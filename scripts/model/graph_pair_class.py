@@ -3,6 +3,7 @@ __author__ = 'angad'
 from scripts.model.features import *
 from matplotlib import pyplot as plt
 import networkx as nx
+import numpy as np
 
 class GraphPair(object):
     def __init__(self, graph1, graph2):
@@ -19,4 +20,10 @@ class GraphPair(object):
         nx.draw(self.graph1)
         plt.subplot(1,2,2)
         nx.draw(self.graph2)
+
+    def combined_adj_matrix_flat(self):
+        return np.append(self.__adj_matrix_flat(self.graph1), self.__adj_matrix_flat(self.graph2))
+
+    def __adj_matrix_flat(self, g):
+        return nx.adjacency_matrix(g).toarray().flatten()
 
