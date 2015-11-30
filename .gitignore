@@ -61,3 +61,6 @@ target/
 
 # Locally store graphs because we will need a ton of these
 graphs/*
+.DS_Store
+.ipynb_checkpoints
+*.ipynb
