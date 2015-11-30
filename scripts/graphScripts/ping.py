@@ -8,6 +8,7 @@ import networkx as nx
 from numpy import random
 from math import factorial
 from scipy.spatial.distance import cosine
+import copy
 
 def create(degree, nodes):
     # Returns a pair of PING
@@ -24,18 +25,17 @@ def create(degree, nodes):
     # for _ in xrange(factorial(nodes)):
     while(True):
         random.shuffle(node_list)
-
         # Generate first PING graph
         seed = 1
         g1 = nx.random_regular_graph(degree, nodes, seed=seed)
-        g2 = nx.random_regular_graph(degree, nodes, seed=seed)
-        for new_node in [nodes + 1, nodes + 2]:
-            g1.add_node(new_node)
-            g2.add_node(new_node)
-            for connect_to_node in node_list[:nodes/2]:
-                g1.add_edge(new_node, connect_to_node)
-            for connect_to_node in node_list[nodes/2:]:
-                g2.add_edge(new_node, connect_to_node)
+        g2 = copy.deepcopy(g1)
+        # for new_node in [nodes + 1, nodes + 2]:
+        g1.add_node(nodes + 1)
+        g2.add_node(nodes + 1)
+        for connect_to_node in node_list[:nodes/2]:
+            g1.add_edge(nodes + 1, connect_to_node)
+        for connect_to_node in node_list[nodes/2:]:
+            g2.add_edge(nodes + 1, connect_to_node)
         isomorphic = nx.is_isomorphic(g1, g2)
         cospectral_dist = abs(cosine(nx.adjacency_spectrum(g1), nx.adjacency_spectrum(g2)))
         if not isomorphic and cospectral_dist < 0.01:
