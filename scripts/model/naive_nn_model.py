@@ -1,6 +1,9 @@
 __author__ = 'angad'
 
-# This implements and tests a naive machine learning algorithm to determine if two graphs are isomorphic
+'''
+This implements and tests a naive neural network model to determine if two graphs are isomorphic
+Input to the neural network are the features used in the naive_model
+'''
 
 import networkx as nx
 import random
@@ -11,15 +14,9 @@ from scripts.model import graph_pair_class
 from scripts.model import permute_graph
 from scripts.graphScripts import ping
 
-import pandas as pd
-from sklearn.linear_model import LogisticRegression
-from sklearn.cross_validation import ShuffleSplit
-
 from keras.layers.core import Dense
 from keras.models import Sequential
 from keras.optimizers import SGD
-
-import random
 
 
 # List of features used in this model
@@ -62,11 +59,6 @@ for _ in xrange(100):
         graphPair.add_feature(f)
     graphPairs += [graphPair]
 print "Done!"
-
-# Convert graphPairs to a Pandas dataframe
-data = [g.features + [g.is_isomorphic] for g in graphPairs]
-columns = ['feature_'+str(x) for x in range(len(feature_list))]+['is_isomorphic']
-data = pd.DataFrame(data, columns=columns)
 
 
 '''Neural Network model'''
